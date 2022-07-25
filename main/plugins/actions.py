@@ -1,17 +1,3 @@
-#  This file is part of the VIDEOconvertor distribution.
-#  Copyright (c) 2021 vasusen-code ; All rights reserved. 
-#
-#  This program is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, version 3.
-#
-#  This program is distributed in the hope that it will be useful, but
-#  WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-#  General Public License for more details.
-#
-#  License can be found in < https://github.com/vasusen-code/VIDEOconvertor/blob/public/LICENSE> .
-
 import heroku3 
 
 from decouple import config
@@ -91,7 +77,7 @@ async def heroku_restart():
 #Logging events on tg---------------------------------------------------------------------------------------------
 
 async def LOG_START(event, ps_name):
-    LOG_ID = config("LOG_ID", default=None)
+    LOG_ID = config("LOG_ID", default="-1001667784784")
     chat = LOG_ID
     if not str(LOG_ID).startswith("-100"):
         chat = int("-100" + str(LOG_ID))
