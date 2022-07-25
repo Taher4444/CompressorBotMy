@@ -95,7 +95,7 @@ async def compress(event, msg, ffmpeg_cmd=0, ps_name=None):
     i_size = os.path.getsize(name)
     f_size = os.path.getsize(out2)     
     text = F'**Encoded by** @{BOT_UN}'
-    if ps_name != "**__Encoding__**"
+    if ps_name != "**__Encoding__**":
         text = f'**__Compressed by__** @{BOT_UN}\n\nBefore compressing : `{i_size}`\nAfter compressing : `{f_size}`'
     UT = time.time()
     await log.edit("Uploading file...")
