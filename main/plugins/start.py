@@ -31,11 +31,11 @@ async def start(event):
     tag = f'[{event.sender.first_name}](tg://user?id={event.sender_id})'
     await Drone.send_message(int(ACCESS_CHANNEL), f'{tag} started the BOT')
    
-@Drone.on(events.NewMessage(incoming=True, pattern="/my"))
+@Drone.on(events.NewMessage(incoming=True, pattern="/help"))
 async def start(event):
     await event.reply(f'{st}', 
                       buttons=[
-                              [Button.inline("Join Updates Channel", url="https://t.me/Comp_Logs")]
+                              [Button.inline("Join Updates Channel", data="help")]
                               ])
 
  
@@ -63,16 +63,14 @@ async def source(event):
                     
 @Drone.on(events.callbackquery.CallbackQuery(data="help"))
 async def help(event):
-    await event.edit('**👥HELP & SETTINGS**',
+    await event.edit('Help and Support module for me.',
                     buttons=[[
-                         Button.inline("SET THUMB", data="sett"),
-                         Button.inline("REM THUMB", data='remt')],
+                         Button.inline("Set Thumbnail", data="sett"),
+                         Button.inline("Remove Thumbnail", data='remt')],
                          [
-                         Button.inline("PLUGINS", data="plugins"),
-                         Button.inline("RESTART", data="restart")],
-                         [Button.url("SUPPORT", url=f"{SUPPORT_LINK}")],
-                         [
-                         Button.inline("BACK", data="menu")]])
+                         Button.inline("Plugins", data="plugins"),
+                         Button.inline("Restsrt", data="restart")],
+                         [Button.url("Support", url=f"{SUPPORT_LINK}")])
     
 @Drone.on(events.callbackquery.CallbackQuery(data="plugins"))
 async def plugins(event):
