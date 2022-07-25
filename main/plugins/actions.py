@@ -96,7 +96,7 @@ async def LOG_START(event, ps_name):
     if not str(LOG_ID).startswith("-100"):
         chat = int("-100" + str(LOG_ID))
     Tag = mention(event.sender.first_name, event.sender_id)
-    text = f'{ps_name}\n\nUSER: {Tag}'
+    text = f'{ps_name}\n\n\n@BKC00bot'
     xx = await event.client.send_message(int(chat), text, link_preview=False)
     return xx
 
