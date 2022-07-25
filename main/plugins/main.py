@@ -1,17 +1,3 @@
-#  This file is part of the VIDEOconvertor distribution.
-#  Copyright (c) 2021 vasusen-code ; All rights reserved. 
-#
-#  This program is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, version 3.
-#
-#  This program is distributed in the hope that it will be useful, but
-#  WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-#  General Public License for more details.
-#
-#  License can be found in < https://github.com/vasusen-code/VIDEOconvertor/blob/public/LICENSE> .
-
 import os, time, asyncio
 
 from telethon import events, Button
@@ -48,7 +34,7 @@ async def compin(event):
                 return await event.reply(f'you are Banned to use me!\n\ncontact [SUPPORT]({SUPPORT_LINK})', link_preview=False)
             video = event.file.mime_type
             if 'video' in video:
-                await event.reply("📽",
+                await event.reply("Select any Option!",
                             buttons=[
                                 [Button.inline("ENCODE", data="encode"),
                                  Button.inline("COMPRESS", data="compress")],
@@ -71,7 +57,7 @@ async def compin(event):
     
 @Drone.on(events.callbackquery.CallbackQuery(data="encode"))
 async def _encode(event):
-    await event.edit("**🔀ENCODE**",
+    await event.edit("ENCODE into_____________",
                     buttons=[
                         [Button.inline("240p", data="240"),
                          Button.inline("360p", data="360")],
@@ -83,7 +69,7 @@ async def _encode(event):
      
 @Drone.on(events.callbackquery.CallbackQuery(data="compress"))
 async def _compress(event):
-    await event.edit("**🗜COMPRESS**",
+    await event.edit("COMPRESS into__________",
                     buttons=[
                         [Button.inline("HEVC COMPRESS", data="hcomp"),
                          Button.inline("FAST COMPRESS", data="fcomp")],
@@ -93,7 +79,7 @@ async def _compress(event):
 async def convert(event):
     button = await event.get_message()
     msg = await button.get_reply_message()  
-    await event.edit("🔃**CONVERT**",
+    await event.edit("CONVERT file into_________",
                     buttons=[
                         [Button.inline("MP3", data="mp3"),
                          Button.inline("FLAC", data="flac"),
@@ -107,7 +93,7 @@ async def convert(event):
                         
 @Drone.on(events.callbackquery.CallbackQuery(data="back"))
 async def back(event):
-    await event.edit("📽", buttons=[
+    await event.edit("Select any Option!", buttons=[
                     [Button.inline("ENCODE", data="encode"),
                      Button.inline("COMPRESS", data="compress")],
                     [Button.inline("CONVERT", data="convert"),
