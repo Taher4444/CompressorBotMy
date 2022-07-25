@@ -55,16 +55,16 @@ async def encode(event, msg, scale=0):
         ext = (n.split("."))[1]
         out = new_name + ext
     DT = time.time()
-    log = await LOG_START(event, f'**{_ps} PROCESS STARTED**\n\n[Bot is busy now]({SUPPORT_LINK})')
-    log_end_text = f'**{_ps} PROCESS FINISHED**\n\n[Bot is free now]({SUPPORT_LINK})'
+    log = await LOG_START(event, f'**{_ps} PROCESS STARTED**')
+    log_end_text = f'**{_ps} PROCESS FINISHED**'
     try:
-        await fast_download(n, file, Drone, edit, DT, "**DOWNLOADING:**")
+        await fast_download(n, file, Drone, edit, DT, "**Downloading..**")
     except Exception as e:
         os.rmdir("encodemedia")
         await log.delete()
         await LOG_END(event, log_end_text)
         print(e)
-        return await edit.edit(f"An error occured while downloading.\n\nContact [SUPPORT]({SUPPORT_LINK})", link_preview=False) 
+        return await edit.edit(f"An error occured while downloading.", link_preview=False) 
     name = '__' + dt.now().isoformat("_", "seconds") + ".mp4"
     os.rename(n, name)
     await edit.edit("Extracting metadata...")
@@ -108,7 +108,7 @@ async def encode(event, msg, scale=0):
         await LOG_END(event, log_end_text)
         os.rmdir("encodemedia")
         print(e)
-        return await edit.edit(f"An error occured while FFMPEG progress.\n\nContact [SUPPORT]({SUPPORT_LINK})", link_preview=False)  
+        return await edit.edit(f"An error occured while ffmpeg progress...", link_preview=False)  
     out2 = dt.now().isoformat("_", "seconds") + ".mp4" 
     if msg.file.name:
         out2 = msg.file.name
@@ -129,7 +129,7 @@ async def encode(event, msg, scale=0):
             await LOG_END(event, log_end_text)
             os.rmdir("encodemedia")
             print(e)
-            return await edit.edit(f"An error occured while uploading.\n\nContact [SUPPORT]({SUPPORT_LINK})", link_preview=False)
+            return await edit.edit(f"An error occured while uploading...", link_preview=False)
     elif 'webm' in mime:
         try:
             uploader = await fast_upload(f'{out2}', f'{out2}', UT, Drone, edit, '**UPLOADING:**')
@@ -139,7 +139,7 @@ async def encode(event, msg, scale=0):
             await LOG_END(event, log_end_text)
             os.rmdir("encodemedia")
             print(e)
-            return await edit.edit(f"An error occured while uploading.\n\nContact [SUPPORT]({SUPPORT_LINK})", link_preview=False)
+            return await edit.edit(f"An error occured while uploading...", link_preview=False)
     else:
         metadata = video_metadata(out2)
         width = metadata["width"]
@@ -158,11 +158,11 @@ async def encode(event, msg, scale=0):
                 await LOG_END(event, log_end_text)
                 os.rmdir("encodemedia")
                 print(e)
-                return await edit.edit(f"An error occured while uploading.\n\nContact [SUPPORT]({SUPPORT_LINK})", link_preview=False)
+                return await edit.edit(f"An error occured while uploading...", link_preview=False)
     await edit.delete()
     os.remove(name)
     os.remove(out2)
     await log.delete()
-    log_end_text2 = f'**{_ps} PROCESS FINISHED**\n\nTime Taken: {round((time.time()-DT)/60)} minutes\nInitial size: {i_size/1000000}mb.\nFinal size: {f_size/1000000}mb.\n\n[Bot is free now.]({SUPPORT_LINK})'
+    log_end_text2 = f'**{_ps} PROCESS FINISHED**\n\nTime Taken: {round((time.time()-DT)/60)} minutes\nInitial size: {i_size/1000000}mb.\nFinal size: {f_size/1000000}mb.'
     await LOG_END(event, log_end_text2)
     
