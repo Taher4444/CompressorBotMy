@@ -55,7 +55,7 @@ async def help(event):
                          Button.inline("Set Thumbnail", data="sett"),
                          Button.inline("Remove Thumbnail", data='remt')],
                         [Button.inline("Modules", data="plugins"),
-                         Button.inline("Restsrt", data="restart")])
+                         Button.inline("Restsrt", data="restart")]])
     
 @Drone.on(events.callbackquery.CallbackQuery(data="plugins"))
 async def plugins(event):
