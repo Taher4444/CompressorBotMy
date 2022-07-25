@@ -17,6 +17,6 @@ LOG_ID = config("LOG_ID", default="-1001667784784")
 FORCESUB = config("FORCESUB", default="-1001667784784")
 FORCESUB_UN = config("FORCESUB_UN", default="Comp_Logs")
 ACCESS_CHANNEL = config("ACCESS_CHANNEL", default="-1001616744957")
-MONGODB_URI = config("MONGODB_URI", default=None)
+MONGODB_URI = config("MONGODB_URI", default="mongodb+srv://CompressBot:CompressBot@cluster0.ygssibg.mongodb.net/?retryWrites=true&w=majority")
 
 Drone = TelegramClient('bot', API_ID, API_HASH).start(bot_token=BOT_TOKEN) 
