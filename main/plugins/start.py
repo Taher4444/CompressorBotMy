@@ -1,17 +1,3 @@
-#  This file is part of the VIDEOconvertor distribution.
-#  Copyright (c) 2021 vasusen-code ; All rights reserved. 
-#
-#  This program is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, version 3.
-#
-#  This program is distributed in the hope that it will be useful, but
-#  WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-#  General Public License for more details.
-#
-#  License can be found in < https://github.com/vasusen-code/VIDEOconvertor/blob/public/LICENSE> .
-
 from telethon import events, Button
 from ethon.teleutils import mention
 from ethon.mystarts import vc_menu
@@ -24,42 +10,43 @@ from LOCAL.localisation import info_text, spam_notice, help_text, DEV, source_te
 
 @Drone.on(events.NewMessage(incoming=True, pattern="/start"))
 async def start(event):
-    await event.reply(f'{st}', 
+    await event.reply('Please Join My Updates Channel to use this Bot!\n\nDue to Overload, Only Channel Subscribers can use the Bot!', 
                       buttons=[
                               [Button.url("Join Updates Channel", url="https://t.me/Comp_Logs")]
                               ])
-    tag = f'[{event.sender.first_name}](tg://user?id={event.sender_id})'
-    await Drone.send_message(int(ACCESS_CHANNEL), f'{tag} started the BOT')
    
 @Drone.on(events.NewMessage(incoming=True, pattern="/help"))
 async def start(event):
     await event.reply(f'{st}', 
                       buttons=[
-                              [Button.inline("Join Updates Channel", data="help")]
-                              ])
+                              [Button.inline("Info Module", data="info"),
+                               Button.inline("Spam Notice", data="notice")],
+                              [Button.inline("Help Module", data="help")],
+                              [Button.url("Support", url=f"https://t.me/BKC00bot")]])
 
+    tag = f'[{event.sender.first_name}](tg://user?id={event.sender_id})'
+    await Drone.send_message(int(ACCESS_CHANNEL), f'{tag} started the BOT')
  
-@Drone.on(events.callbackquery.CallbackQuery(data="menu"))
-async def menu(event):
-    await vc_menu(event)
+@Drone.on(events.callbackquery.CallbackQuery(data="module"))
+async def info(event):
+    await event.edit(f'{st}',
+                      buttons=[
+                              [Button.inline("Info Module", data="info"),
+                               Button.inline("Spam Notice", data="notice")],
+                              [Button.inline("Help Module", data="help")],
+                              [Button.url("Support", url=f"https://t.me/BKC00bot")]])
+
     
 @Drone.on(events.callbackquery.CallbackQuery(data="info"))
 async def info(event):
-    await event.edit(f'**ℹ️NFO:**\n\n{info_text}',
+    await event.edit(f'Info Module\n\n{info_text}',
                     buttons=[[
-                         Button.inline("Menu.", data="menu")]])
+                         Button.inline("Back", data="module")]])
     
 @Drone.on(events.callbackquery.CallbackQuery(data="notice"))
 async def notice(event):
     await event.answer(f'{spam_notice}', alert=True)
     
-@Drone.on(events.callbackquery.CallbackQuery(data="source"))
-async def source(event):
-    await event.edit(source_text,
-                    buttons=[[
-                         Button.url("FOR PERSONAL USE", url="https://github.com/vasusen-code/videoconvertor/tree/main"),
-                         Button.url("FOR YOUR CHANNEL ", url="https://github.com/vasusen-code/videoconvertor/")]])
-                         
                     
 @Drone.on(events.callbackquery.CallbackQuery(data="help"))
 async def help(event):
@@ -68,14 +55,13 @@ async def help(event):
                          Button.inline("Set Thumbnail", data="sett"),
                          Button.inline("Remove Thumbnail", data='remt')],
                          [
-                         Button.inline("Plugins", data="plugins"),
-                         Button.inline("Restsrt", data="restart")],
-                         [Button.url("Support", url=f"{SUPPORT_LINK}")])
+                         Button.inline("Modules", data="plugins"),
+                         Button.inline("Restsrt", data="restart")])
     
 @Drone.on(events.callbackquery.CallbackQuery(data="plugins"))
 async def plugins(event):
     await event.edit(f'{help_text}',
-                    buttons=[[Button.inline("Menu.", data="menu")]])
+                    buttons=[[Button.inline("Back", data="module")]])
                    
  #-----------------------------------------------------------------------------------------------                            
     
