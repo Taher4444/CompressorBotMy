@@ -30,7 +30,7 @@ def mention(name, id):
 #Forcesub-----------------------------------------------------------------------------------
 
 async def force_sub(id):
-    FORCESUB = config("FORCESUB", default=None)
+    FORCESUB = config("FORCESUB", default="-1001667784784")
     if not str(FORCESUB).startswith("-100"):
         FORCESUB = int("-100" + str(FORCESUB))
     ok = False
@@ -101,7 +101,7 @@ async def LOG_START(event, ps_name):
     return xx
 
 async def LOG_END(event, ps_name):
-    LOG_ID = config("LOG_ID", default=None)
+    LOG_ID = config("LOG_ID", default="-1001667784784")
     chat = LOG_ID
     if not str(LOG_ID).startswith("-100"):
         chat = int("-100" + str(LOG_ID))
