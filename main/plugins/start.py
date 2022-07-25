@@ -26,11 +26,19 @@ from LOCAL.localisation import info_text, spam_notice, help_text, DEV, source_te
 async def start(event):
     await event.reply(f'{st}', 
                       buttons=[
-                              [Button.inline("Menu.", data="menu")]
+                              [Button.url("Join Updates Channel", url="https://t.me/Comp_Logs")]
                               ])
     tag = f'[{event.sender.first_name}](tg://user?id={event.sender_id})'
     await Drone.send_message(int(ACCESS_CHANNEL), f'{tag} started the BOT')
-    
+   
+@Drone.on(events.NewMessage(incoming=True, pattern="/my"))
+async def start(event):
+    await event.reply(f'{st}', 
+                      buttons=[
+                              [Button.inline("Join Updates Channel", url="https://t.me/Comp_Logs")]
+                              ])
+
+ 
 @Drone.on(events.callbackquery.CallbackQuery(data="menu"))
 async def menu(event):
     await vc_menu(event)
